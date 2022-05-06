@@ -11,12 +11,17 @@ class OntologyTemplateMethod:
 
     def printAll(self):
         all = self.ontologyObject.getAllClasses()
+        count = 0
         for i in all:
-            FMAID = i.split('fma.fma')[1]
-            FMAID = re.findall(r'\d+', FMAID)[0]
-            print(FMAID)
-            print(self.getOne(FMAID))
-
+            print(i)
+            numbers = re.findall(r'\d+', i)
+            if (numbers):
+                FMAID = numbers[0]
+                print(FMAID)
+                print(self.getOne(FMAID))
+            else:
+                count+=1
+        print(count)
 
     def getOne(self, FMAID):
         data = {}
